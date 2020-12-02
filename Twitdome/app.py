@@ -14,8 +14,8 @@ def create_app():
         return "Hello, Twitter Dome!"
     
     @app.route("/<username>/<followers>")
-    """Adds User to User-class DataBase."""
     def add_user(username, followers):
+        """Adds User to User-class DataBase."""
         user = User(username=username, followers=followers)
         DB.session.add(user)
         DB.session.commit()
