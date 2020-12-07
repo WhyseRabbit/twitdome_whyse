@@ -7,8 +7,6 @@ DB = SQLAlchemy()
 class User(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
-    tweet_id = DB.Column(DB.Integer, DB.ForeignKey("tweet.id"), nullable=False)
-    tweets = DB.relationship("Tweet", backref=DB.backref("username", lazy=True))
 
     def __repr__(self):
         return "<User %r>" % self.username
