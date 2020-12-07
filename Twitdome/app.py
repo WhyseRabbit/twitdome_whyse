@@ -11,7 +11,7 @@ def create_app():
 
     @app.route("/")
     def root():
-        return "Hello, Twitter Dome!"
+        return render_template("base.html", title="TwitDome Home", users=User.query.all())
     
     @app.route("/<username>")
     def add_user(username):
