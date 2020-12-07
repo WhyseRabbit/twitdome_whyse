@@ -5,16 +5,19 @@ DB = SQLAlchemy()
 
 
 class User(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
+    id = DB.Column(DB.BigInteger, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
+    followers = DB.Column(DB.String(80), unique=True, nullable=False)
+    newest_tweet_id = DB.Column(DB.BigInteger, nullable=False)
 
     def __repr__(self):
-        return "<User %r>" % self.username
+        return "<User %r>" % self.name
 
 
 class Tweet(DB.Model):
     id = DB.Column(DB.Integer, primary_key=True)
     text = DB.Column(DB.String(280), unique=True, nullable=False)
+    embed = DB.Column(DB.PickleType, nullable=False)
     user_id = DB.Column(DB.Integer, DB.ForeignKey("user.id"), nullable=False)
     user = DB.relationship("User", backref=DB.backref("text", lazy=True))
 

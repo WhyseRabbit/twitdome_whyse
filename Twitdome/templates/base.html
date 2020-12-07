@@ -2,18 +2,19 @@
 
 <html>
   <head>
-    <title>TwitterDome - {{ title }}</title>
+    <title>Twitter Dome - {{ title }}</title>
     <link rel="stylesheet" href="https://unpkg.com/picnic"/>
   </head>
   <body>
     <nav>
-      <a href="/" class="brand"><span>TwitterDome!</span></a>
+      <a href="/" class="brand"><span>Twitter Dome!</span></a>
       <!-- responsive-->
       <input id="bmenub" type="checkbox" class="show">
       <label for="bmenub" class="burger pseudo button">Menu</label>
       <div class="menu">
         <a href="/update" class="button warning">Update Tweets</a>
       </div>
+      
     </nav>
     <article class="flex two" style="padding: 3em 1em;">
       {% block content %}
@@ -35,6 +36,7 @@
           <input type="submit" value="Compare Users">
         </form>
       </div>
+
       <div>
         <h2>Twitter Users</h2>
         {% for user in users %}
