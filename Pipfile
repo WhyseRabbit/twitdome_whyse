@@ -8,6 +8,9 @@ flask = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 sqlalchemy = "*"
+tweepy = "*"
+spacy = "*"
+scikit-learn = "*"
 
 [dev-packages]
 
