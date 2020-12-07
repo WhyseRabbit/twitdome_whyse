@@ -11,10 +11,10 @@ def create_app():
 
     @app.route("/")
     def root():
-        return "Hello, Twitter Dome!"
+        return "_Hello, Twitter Dome!_"
     
     @app.route("/<username>")
-    def add_user(username, followers):
+    def add_user(username):
         """Adds User to User-class DataBase."""
         user = User(username=username)
         DB.session.add(user)
