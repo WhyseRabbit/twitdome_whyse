@@ -60,5 +60,6 @@ def create_app():
         """Resets the DataBase for a clean start."""
         DB.drop_all()
         DB.create_all()
+        return render_template("base.html", title="TwitDome Reset")
 
     return app

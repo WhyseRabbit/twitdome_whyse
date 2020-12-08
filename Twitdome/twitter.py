@@ -16,10 +16,10 @@ TWITTER_AUTH = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_SECRET_API)
 TWITTER_AUTH.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET)
 TWITTER = tweepy.API(TWITTER_AUTH)
 
-nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser"])
+# nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser"])
 
-def tweet_vector(nlp, tweet_text):
-    return list(nlp(tweet_text).vector)
+# def tweet_vector(nlp, tweet_text):
+#     return list(nlp(tweet_text).vector)
 
 def add_user_tweepy(username):
     """Add a user and their tweets to database"""
