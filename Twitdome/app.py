@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from .db_model import DB, User, Tweet
 from .twitter import add_user_tweepy
-from .predict import predict_user
+# from .predict import predict_user
 
 
 def create_app():
