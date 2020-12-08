@@ -2,7 +2,7 @@ import os
 import tweepy
 import spacy
 from dotenv import load_dotenv
-from .db_model import DB, User, 
+from .db_model import DB, User, Tweet
 
 
 load_dotenv()
