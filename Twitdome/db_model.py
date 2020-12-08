@@ -8,6 +8,7 @@ class User(DB.Model):
     """This is a backend database that stores Twitter users with their newest tweet id."""
     id = DB.Column(DB.BigInteger, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
+    tweets = DB.Column(DB.Unicode(280), unique=True, nullable=False)
     newest_tweet_id = DB.Column(DB.BigInteger, nullable=False)
 
     def __repr__(self):
