@@ -1,16 +1,16 @@
 import os
-from dotenv import load_dotenv
-from .db_model import DB, User, Tweet
-import spacy
 import tweepy
+import spacy
+from dotenv import load_dotenv
+from .db_model import DB, User, 
 
 
 load_dotenv()
 
-TWITTER_API_KEY = os.getenv("TWITTER_API_KEY", default="NUH_UH!")
-TWITTER_SECRET_API = os.getenv("TWITTER_SECRET_API", default="NUH_UH!")
-TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
-TWITTER_ACCESS_SECRET = os.getenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
+TWITTER_API_KEY = os.dotenv("TWITTER_API_KEY", default="NUH_UH!")
+TWITTER_SECRET_API = os.dotenv("TWITTER_SECRET_API", default="NUH_UH!")
+TWITTER_ACCESS_TOKEN = os.dotenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
+TWITTER_ACCESS_SECRET = os.dotenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
 
 TWITTER_AUTH = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_SECRET_API)
 TWITTER_AUTH.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET)
@@ -25,6 +25,7 @@ def add_user_tweepy(username):
     """Add a user and their tweets to database"""
     try:
         twitter_user = TWITTER.get_user(username)
+
         db_user = (User.query.get(twitter_user.id) or
                    User(id=twitter_user.id,
                         username=username,
@@ -35,7 +36,7 @@ def add_user_tweepy(username):
         tweets = twitter_user.timeline(count=200,
                                        exclude_replies=True,
                                        include_rts=False,
-                                       tweet_mode='extended',
+                                       tweet_mode="extended",
                                        since_id=db_user.newest_tweet_id)
 
         if tweets:
@@ -46,15 +47,14 @@ def add_user_tweepy(username):
             embedding = tweet_vector(nlp, tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text[:300],
-                             embed=embedding)
+                             tweet=tweet.full_text[:300],
+                             embedding=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
-        print('Error processing {}: {}'.format(username, e))
+        print(f"Error processing {username}: {e}")
         raise e
-
 
     else:
         DB.session.commit()
@@ -100,8 +100,8 @@ def add_user_history(username):
             embedding = tweet_vector(nlp, tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text[:300],
-                             embed=embedding)
+                             tweet=tweet.full_text[:300],
+                             embedding=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
@@ -111,5 +111,9 @@ def add_user_history(username):
 
     else:
         DB.session.commit()
-        DB.session.commit()
         print("Successfully saved tweets to DB!")
+
+
+def update_users():
+    for user in User.query.all():
+        add_user_tweepy(user.username)

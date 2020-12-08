@@ -9,8 +9,6 @@ class User(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
     followers = DB.Column(DB.String(100), unique=True, nullable=False)
-    tweet = DB.Column(DB.Unicode(280), unique=True, nullable=False)
-    tweets = DB.Column(DB.Unicode(280), unique=True, nullable=False)
     newest_tweet_id = DB.Column(DB.BigInteger, nullable=False)
 
     def __repr__(self):
