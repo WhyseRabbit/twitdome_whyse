@@ -46,8 +46,8 @@ def add_user_tweepy(username):
 
             embedding = tweet_vector(nlp, tweets.full_text)
 
-            db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text[:300],
+            db_tweet = Tweet(id=tweets.id,
+                             text=tweets.full_text[:300],
                              embed=embedding)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)
@@ -97,10 +97,10 @@ def add_user_history(username):
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
         for _ in tweet_history:
-            embedding = tweet_vector(nlp, tweet.full_text)
+            embedding = tweet_vector(nlp, tweets.full_text)
 
-            db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text[:300],
+            db_tweet = Tweet(id=tweets.id,
+                             text=tweets.full_text[:300],
                              embed=embedding)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)
