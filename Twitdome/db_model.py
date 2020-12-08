@@ -8,6 +8,7 @@ class User(DB.Model):
     """This is a backend database that stores Twitter users with their newest tweet id."""
     id = DB.Column(DB.BigInteger, primary_key=True)
     username = DB.Column(DB.String(80), unique=True, nullable=False)
+    followers = DB.Column(DB.String(100), unique=True, nullable=False)
     tweets = DB.Column(DB.Unicode(280), unique=True, nullable=False)
     newest_tweet_id = DB.Column(DB.BigInteger, nullable=False)
 
@@ -32,8 +33,8 @@ class Tweet(DB.Model):
 # >>> user2 = User(username="1JimmyTheRabbit")
 # >>> tweet1 = Tweet(text="President, White House, and The United States of America.")
 # >>> tweet2 = Tweet(text="The Secret is coming for you...")
-# >>> user1.tweet.append(tweet1)
-# >>> user2.tweet.append(tweet2)
+# >>> user1.tweets.append(tweet1)
+# >>> user2.tweets.append(tweet2)
 # >>> DB.session.add(user1)
 # >>> DB.session.add(user2)
 # >>> DB.session.commit()
