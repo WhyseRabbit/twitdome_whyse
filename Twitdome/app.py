@@ -28,7 +28,7 @@ def create_app():
                 add_user_tweepy(name)
                 message = "User {} has been added to the Twitter Dome!".format(name)
 
-            tweets = User.query.filter(User.username == name).one().tweet
+            tweets = User.query.filter(User.username == name).one().tweets
 
         except Exception as e:
             print("{} is not worthy!: {}".format(name, e))
