@@ -7,10 +7,10 @@ from .db_model import DB, User, Tweet
 
 load_dotenv()
 
-TWITTER_API_KEY = os.dotenv("TWITTER_API_KEY", default="NUH_UH!")
-TWITTER_SECRET_API = os.dotenv("TWITTER_SECRET_API", default="NUH_UH!")
-TWITTER_ACCESS_TOKEN = os.dotenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
-TWITTER_ACCESS_SECRET = os.dotenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
+TWITTER_API_KEY = os.getenv("TWITTER_API_KEY", default="NUH_UH!")
+TWITTER_SECRET_API = os.getenv("TWITTER_SECRET_API", default="NUH_UH!")
+TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
+TWITTER_ACCESS_SECRET = os.getenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
 
 TWITTER_AUTH = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_SECRET_API)
 TWITTER_AUTH.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET)
