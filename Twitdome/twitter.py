@@ -48,7 +48,7 @@ def add_user_tweepy(username):
 
             db_tweet = Tweet(id=tweet.id,
                              text=tweet.full_text[:300],
-                             embedding=embedding)
+                             embed=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
@@ -101,7 +101,7 @@ def add_user_history(username):
 
             db_tweet = Tweet(id=tweet.id,
                              text=tweet.full_text[:300],
-                             embedding=embedding)
+                             embed=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
