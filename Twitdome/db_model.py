@@ -20,7 +20,7 @@ class Tweet(DB.Model):
     text = DB.Column(DB.Unicode(280), unique=True, nullable=False)
     embed = DB.Column(DB.PickleType, nullable=False)
     user_id = DB.Column(DB.Integer, DB.ForeignKey("user.id"), nullable=False)
-    user = DB.relationship("User", backref=DB.backref("text", lazy=True))
+    user = DB.relationship("User", backref=DB.backref("tweets", lazy=True))
 
     def __repr__(self):
         return "<Tweet %r>" % self.text
