@@ -40,15 +40,14 @@ def add_user_tweepy(username):
 
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
-            pass
 
         for tweet in tweets:
 
             embedding = tweet_vector(nlp, tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             tweet=tweet.full_text[:300],
-                             embedding=embedding)
+                             text=tweet.full_text[:300],
+                             embed=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
@@ -101,8 +100,8 @@ def add_user_history(username):
             embedding = tweet_vector(nlp, tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             tweet=tweet.full_text[:300],
-                             embedding=embedding)
+                             text=tweet.full_text[:300],
+                             embed=embedding)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
