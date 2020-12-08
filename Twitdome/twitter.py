@@ -40,16 +40,17 @@ def add_user_tweepy(username):
 
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
+            pass
 
-        for tweet in tweets:
+        # for tweet in tweets:
 
-            embedding = tweet_vector(nlp, tweet.full_text)
+        #     embedding = tweet_vector(nlp, tweet.full_text)
 
-            db_tweet = Tweet(id=tweet.id,
-                             tweet=tweet.full_text[:300],
-                             embedding=embedding)
-            db_user.tweet.append(db_tweet)
-            DB.session.add(db_tweet)
+        #     db_tweet = Tweet(id=tweet.id,
+        #                      tweet=tweet.full_text[:300],
+        #                      embedding=embedding)
+        #     db_user.tweet.append(db_tweet)
+        #     DB.session.add(db_tweet)
 
     except Exception as e:
         print('Error processing {}: {}'.format(username, e))
@@ -96,14 +97,14 @@ def add_user_history(username):
 
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
-        for tweet in tweet_history:
-            embedding = tweet_vector(nlp, tweet.full_text)
+        # for tweet in tweet_history:
+        #     embedding = tweet_vector(nlp, tweet.full_text)
 
-            db_tweet = Tweet(id=tweet.id,
-                             tweet=tweet.full_text[:300],
-                             embedding=embedding)
-            db_user.tweet.append(db_tweet)
-            DB.session.add(db_tweet)
+        #     db_tweet = Tweet(id=tweet.id,
+        #                      tweet=tweet.full_text[:300],
+        #                      embedding=embedding)
+        #     db_user.tweet.append(db_tweet)
+        #     DB.session.add(db_tweet)
 
     except Exception as e:
         print(f"Error processing {username}: {e}")
