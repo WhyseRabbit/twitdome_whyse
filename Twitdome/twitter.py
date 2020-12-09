@@ -42,14 +42,14 @@ def add_user_tweepy(username):
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
-        for _ in tweets:
+        for tweet in tweets:
 
-            embed = tweet_vector(nlp, tweets.text)
+            embed = tweet_vector(nlp, tweet.text)
 
-            db_tweet = Tweet(id=tweets.id,
-                             text=tweets.text[:300],
+            db_tweet = Tweet(id=tweet.id,
+                             text=tweet.text[:300],
                              embed=embed)
-            db_user.tweets.append(db_tweet)
+            db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
@@ -75,7 +75,7 @@ def add_user_history(username):
                                        exclude_replies=True,
                                        include_rts=False,
                                        tweet_mode="extended")
-        oldest_max_id = tweets[-1].id - 1
+        # oldest_max_id = tweets[-1].id - 1
         tweet_history = []
         tweet_history += tweets
 
