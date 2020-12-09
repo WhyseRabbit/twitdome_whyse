@@ -36,7 +36,7 @@ def add_user_tweepy(username):
         tweets = twitter_user.timeline(count=200,
                                        exclude_replies=True,
                                        include_rts=False,
-                                       tweet_mode="extended",
+                                    #    tweet_mode="extended",
                                        since_id=db_user.newest_tweet_id)
 
         if tweets:
