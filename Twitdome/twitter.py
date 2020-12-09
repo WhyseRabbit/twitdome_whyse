@@ -82,19 +82,19 @@ def add_user_history(username):
         if tweets:
             db_user.newest_tweet_id = tweets[0].id
 
-        while True:
-            tweets = twitter_user.timeline(count=200,
-                                           exclude_replies=True,
-                                           include_rts=False,
-                                           tweet_mode="extended",
-                                           max_id=oldest_max_id)
-            if len(tweets) == 0:
-                break
+        # while True:
+        #     tweets = twitter_user.timeline(count=200,
+        #                                    exclude_replies=True,
+        #                                    include_rts=False,
+        #                                    tweet_mode="extended",
+        #                                    max_id=oldest_max_id)
+        #     if len(tweets) == 0:
+        #         break
 
-            oldest_max_id = tweets[-1].id - 1
-            tweet_history += tweets
+        #     oldest_max_id = tweets[-1].id - 1
+        #     tweet_history += tweets
 
-        print(f"Total Tweets collected for {username}: {len(tweet_history)}")
+        # print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
         for tweet in tweet_history:
             embed = tweet_vector(nlp, tweet.text)
