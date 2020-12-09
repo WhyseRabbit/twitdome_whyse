@@ -96,13 +96,13 @@ def add_user_history(username):
 
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
-        for _ in tweet_history:
-            embed = tweet_vector(nlp, tweets.text)
+        for tweet in tweet_history:
+            embed = tweet_vector(nlp, tweet.text)
 
-            db_tweet = Tweet(id=tweets.id,
-                             text=tweets.text[:300],
+            db_tweet = Tweet(id=tweet.id,
+                             text=tweet.text[:300],
                              embed=embed)
-            db_user.tweets.append(db_tweet)
+            db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
