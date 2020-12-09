@@ -44,11 +44,11 @@ def add_user_tweepy(username):
 
         for _ in tweets:
 
-            embedding = tweet_vector(nlp, tweets.full_text)
+            embed = tweet_vector(nlp, tweets.full_text)
 
             db_tweet = Tweet(id=tweets.id,
                              text=tweets.full_text[:300],
-                             embed=embedding)
+                             embed=embed)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)
 
