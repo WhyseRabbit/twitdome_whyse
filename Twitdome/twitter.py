@@ -77,6 +77,7 @@ def add_user_history(username):
         tweets = twitter_user.timeline(count=200,
                                        exclude_replies=True,
                                        include_rts=False,
+                                       tweet_mode="extended",
                                        full_text=True)
         oldest_max_id = tweets[-1].id - 1
         tweet_history = []
