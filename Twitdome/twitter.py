@@ -50,9 +50,9 @@ def add_user_tweepy(username):
             embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.text[:300],
+                             text=tweet.text,
                              embed=embed)
-            db_user.tweets.append(db_tweet)
+            db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
@@ -103,9 +103,9 @@ def add_user_history(username):
             embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.text[:300],
+                             text=tweet.text,
                              embed=embed)
-            db_user.tweets.append(db_tweet)
+            db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
