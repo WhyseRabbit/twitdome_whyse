@@ -44,7 +44,7 @@ def add_user_tweepy(username):
 
         for tweet in tweets:
 
-            embed = tweet_vector(nlp, tweet.text)
+            embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
                              text=tweet.text[:300],
