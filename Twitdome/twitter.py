@@ -18,7 +18,7 @@ TWITTER = tweepy.API(TWITTER_AUTH)
 
 nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser"])
 
-def tweet_vector(nlp, tweet_text):
+def tweet_vector(tweet_text):
     return list(nlp(tweet_text).vector)
 
 def add_user_tweepy(username):
