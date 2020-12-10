@@ -97,7 +97,7 @@ def add_user_history(username):
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
         for tweet in tweets:
-            embed = tweet_vector(nlp, tweet.text)
+            embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
                              text=tweet.text[:300],
