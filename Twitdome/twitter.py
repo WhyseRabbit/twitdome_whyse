@@ -73,8 +73,8 @@ def add_user_history(username):
 
         tweets = twitter_user.timeline(count=200,
                                        exclude_replies=True,
-                                       include_rts=False,
-                                       tweet_mode="extended")
+                                       include_rts=False)
+                                    #    tweet_mode="extended")
         oldest_max_id = tweets[-1].id - 1
         tweet_history = []
         tweet_history += tweets
@@ -86,7 +86,7 @@ def add_user_history(username):
             tweets = twitter_user.timeline(count=200,
                                            exclude_replies=True,
                                            include_rts=False,
-                                           tweet_mode="extended",
+                                        #    tweet_mode="extended",
                                            max_id=oldest_max_id)
             if len(tweets) == 0:
                 break
