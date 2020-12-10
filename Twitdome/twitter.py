@@ -1,4 +1,4 @@
-from os import getenve
+from os import getenv
 import tweepy
 import spacy
 from dotenv import load_dotenv
