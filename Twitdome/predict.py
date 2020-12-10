@@ -1,4 +1,3 @@
-import pickle
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from .db_model import User
