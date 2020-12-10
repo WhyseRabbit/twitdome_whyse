@@ -6,7 +6,6 @@ from .twitter import nlp, tweet_vector
 
 
 def predict_user(user_1, user_2, tweet_text):
-    # user_set = pickle.dumps((user1, user2))
     user1 = User.query.filter(User.username == user_1).one()
     user2 = User.query.filter(User.username == user_2).one()
     breakpoint()
