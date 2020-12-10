@@ -1,4 +1,4 @@
-import os
+from os import getenve
 import tweepy
 import spacy
 from dotenv import load_dotenv
@@ -7,19 +7,22 @@ from .db_model import DB, User, Tweet
 
 load_dotenv()
 
-TWITTER_API_KEY = os.getenv("TWITTER_API_KEY", default="NUH_UH!")
-TWITTER_SECRET_API = os.getenv("TWITTER_SECRET_API", default="NUH_UH!")
-TWITTER_ACCESS_TOKEN = os.getenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
-TWITTER_ACCESS_SECRET = os.getenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
+TWITTER_API_KEY = getenv("TWITTER_API_KEY", default="NUH_UH!")
+TWITTER_SECRET_API = getenv("TWITTER_SECRET_API", default="NUH_UH!")
+TWITTER_ACCESS_TOKEN = getenv("TWITTER_ACCESS_TOKEN", default="NUH_UH!")
+TWITTER_ACCESS_SECRET = getenv("TWITTER_ACCESS_SECRET", default="NUH_UH!")
 
 TWITTER_AUTH = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_SECRET_API)
 TWITTER_AUTH.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_SECRET)
 TWITTER = tweepy.API(TWITTER_AUTH)
 
-nlp = spacy.load("en_core_web_sm", disable=["tagger", "parser"])
+spacy_model_name = "en_core_web_sm"
+if not spacy.util.is_package(spacy_model_name):
+    spacy.cli.download(spacy_model_name)
 
+nlp = spacy.load(spacy_model_name, disable=["tagger", "parser"])
 def tweet_vector(tweet_text):
-    return list(nlp(tweet_text).vector)
+    return nlp(tweet_text).vector
 
 def add_user_tweepy(username):
     """Add a user and their tweets to database"""
