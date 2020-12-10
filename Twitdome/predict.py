@@ -15,6 +15,6 @@ def predict_user(user1, user2, tweet_text):
                              np.zeros(len(user2_embed))])
 
     log_reg = LogisticRegression(max_iter=1000).fit(embeds, labels)
-    embed_tweet = tweet_vector(nlp, tweet_text)
+    embed_tweet = tweet_vector(tweet_text)
 
     return log_reg.predict(np.array(embed_tweet).reshape(1, -1))
