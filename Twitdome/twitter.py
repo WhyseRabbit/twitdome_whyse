@@ -39,7 +39,8 @@ def add_user_tweepy(username):
         tweets = twitter_user.timeline(count=200,
                                        exclude_replies=True,
                                        include_rts=False,
-                                    #    tweet_mode="extended",
+                                       tweet_mode="extended",
+                                       full_text=True,
                                        since_id=db_user.newest_tweet_id)
 
         if tweets:
@@ -47,10 +48,10 @@ def add_user_tweepy(username):
 
         for tweet in tweets:
 
-            embed = tweet_vector(tweet.full_text)
+            embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text,
+                             text=tweet.text,
                              embed=embed)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
@@ -90,7 +91,8 @@ def add_user_history(username):
             tweets = twitter_user.timeline(count=200,
                                            exclude_replies=True,
                                            include_rts=False,
-                                        #    tweet_mode="extended",
+                                           tweet_mode="extended",
+                                           full_text=True,
                                            max_id=oldest_max_id)
             if len(tweets) == 0:
                 break
@@ -101,10 +103,10 @@ def add_user_history(username):
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
         for tweet in tweets:
-            embed = tweet_vector(tweet.full_text)
+            embed = tweet_vector(tweet.text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text,
+                             text=tweet.text,
                              embed=embed)
             db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
