@@ -51,9 +51,9 @@ def add_user_tweepy(username):
             embed = tweet_vector(tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text,
+                             text=tweet.full_text[:300],
                              embed=embed)
-            db_user.tweets.append(db_tweet)
+            db_user.tweet.append(db_tweet)
             DB.session.add(db_tweet)
 
     except Exception as e:
@@ -102,11 +102,11 @@ def add_user_history(username):
 
         print(f"Total Tweets collected for {username}: {len(tweet_history)}")
 
-        for tweet in tweets:
+        for tweet in tweet_history:
             embed = tweet_vector(tweet.full_text)
 
             db_tweet = Tweet(id=tweet.id,
-                             text=tweet.full_text,
+                             text=tweet.full_text[:300],
                              embed=embed)
             db_user.tweets.append(db_tweet)
             DB.session.add(db_tweet)

@@ -1,3 +1,4 @@
+from os import getenv
 from flask import Flask, render_template, request
 from .db_model import DB, User, Tweet
 from .twitter import add_user_tweepy, update_users
@@ -7,7 +8,7 @@ from .predict import predict_user
 def create_app():
     """Create and configure Flask app."""
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///Twitdome.sqlite3"
+    app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DB_URI")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     DB.init_app(app)
 
@@ -28,7 +29,7 @@ def create_app():
             if request.method == "POST":
                 add_user_tweepy(name)
                 message = f"{name} has entered the Twitter Dome!"
-            tweets = User.query.filter(User.username == name).one().tweets
+            tweets = User.query.filter(User.username == name).one().tweet
 
         except Exception as e:
             print(f"{name} is not worthy!: {e}")
@@ -58,7 +59,7 @@ def create_app():
         """Resets the DataBase for a clean start."""
         DB.drop_all()
         DB.create_all()
-        return render_template("base.html", title="TwitDome Reset")
+        return render_template("base.html", title="TwitDome Reset", users=User.query.all())
 
     @app.route("/update", methods=["GET"])
     def update():
