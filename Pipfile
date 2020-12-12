@@ -11,6 +11,7 @@ sqlalchemy = "*"
 tweepy = "*"
 spacy = "*"
 scikit-learn = "*"
+pandas = "*"
 
 [dev-packages]
 
